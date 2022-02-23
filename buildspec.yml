@@ -9,7 +9,7 @@ phases:
       - echo Logging in to Amazon ECR.....
       - aws --version
       - pip install -r host_requirements.txt
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 293833807604.dkr.ecr.us-east-1.amazonaws.com
       - REPOSITORY_URI=293833807604.dkr.ecr.us-east-1.amazonaws.com/runners-containers-registry
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
